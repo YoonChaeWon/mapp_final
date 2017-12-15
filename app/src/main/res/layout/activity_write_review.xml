@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.cldla.finalproject.WriteReviewActivity">
+
+
+    <EditText
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:hint="제목을 입력해주세요" />
+
+    <EditText
+        android:id="@+id/contents"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+        android:inputType="textPersonName"
+        android:hint="후기를 작성해보세요~"
+        android:textAlignment="center"
+        android:background="@null"/>
+
+    <Button
+        android:id="@+id/finishWriting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="후기 작성 완료"
+        android:onClick="createNewReview"/>
+
+</LinearLayout>
