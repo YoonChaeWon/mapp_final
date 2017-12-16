@@ -37,15 +37,16 @@ public class WriteReviewActivity extends AppCompatActivity {
         Intent i = getIntent(); // LoginActivity의 intent 받아오기
         String author = i.getStringExtra("user_id");
 
-        String sql = "INSERT INTO review (title, contents, author, date) VALUES ('"
-                + title + "', '" + contents + "', '" + author + "', '" + writeDate +"');";
-        Log.d("sql", sql);
-
         SQLiteDatabase db = openOrCreateDatabase(
                 "proj.db",
                 SQLiteDatabase.CREATE_IF_NECESSARY,
                 null
         );
+        String sql = "INSERT INTO review (title, contents, author, date) VALUES ('"
+                + title + "', '" + contents + "', '" + author + "', '" + writeDate +"');";
+        Log.d("sql", sql);
+
+
         db.execSQL(sql);
 
         // 작성한 리뷰를 바로 리스트에 적용

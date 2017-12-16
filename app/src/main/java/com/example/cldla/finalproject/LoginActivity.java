@@ -1,5 +1,6 @@
 package com.example.cldla.finalproject;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -14,10 +15,15 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        try{
+            getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+            getSupportActionBar().setCustomView(R.layout.custom_bar);
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
         setContentView(R.layout.activity_login);
         loadDB();
-
-
     }
 
     public void onResume(){
@@ -40,11 +46,13 @@ public class LoginActivity extends AppCompatActivity {
                 "(_id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "title TEXT, contents VARCHAR(255), author TEXT, date TEXT); ");
 
+/*        db.execSQL("DROP TABLE member;");
+        db.execSQL("DROP TABLE review;");
+        deleteDatabase("proj.db");*/
+
         if(db != null){
             db.close();
         }
-
-        //deleteDatabase("proj.db");
 
     }
 
@@ -63,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
                 SQLiteDatabase.CREATE_IF_NECESSARY,
                 null
         );
+
         Cursor c = db.rawQuery(sql, null);
         int count = c.getCount();
 
@@ -72,15 +81,13 @@ public class LoginActivity extends AppCompatActivity {
         if (count == 0) {
             Toast.makeText(this, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show();
         } else if (count == 1) {
-            String user_id = c.getString(0);
-            Intent i = new Intent(this, WriteReviewActivity.class);
+            String user_id = c.getString(0); // 사용자 id 설정
             // 사용자의 로그인 id를 다른 액티비티에게 넘겨주기
+            Intent i = new Intent(this, ReviewListActivity.class);
             i.putExtra("user_id", user_id);
-
-            Intent next = new Intent(this, ReviewListActivity.class);
-            next.putExtra("user_id", user_id);
-            startActivity(next);
+            startActivity(i);
         }
+
         db.close();
         c.close();
     }

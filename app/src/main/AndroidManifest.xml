@@ -19,7 +19,7 @@
         <activity android:name=".JoinActivity" />
         <activity android:name=".WriteReviewActivity" />
         <activity android:name=".ReviewListActivity" />
-        <activity android:name=".AfterLoginActivity"></activity>
+        <activity android:name=".SeeReviewActivity"></activity>
     </application>
 
 </manifest>

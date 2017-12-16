@@ -66,4 +66,9 @@ public class ReviewListAdapter extends BaseAdapter {
 
         reviewList.add(item);
     }
+
+    public String getWriteDate(int position){
+        return reviewList.get(position).getWriteDate().toString();
+    }
+
 }

@@ -13,6 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
+        android:paddingLeft="20dp"
         android:hint="제목을 입력해주세요" />
 
     <EditText
@@ -20,9 +21,9 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9"
+        android:paddingLeft="20dp"
         android:inputType="textPersonName"
         android:hint="후기를 작성해보세요~"
-        android:textAlignment="center"
         android:background="@null"/>
 
     <Button
