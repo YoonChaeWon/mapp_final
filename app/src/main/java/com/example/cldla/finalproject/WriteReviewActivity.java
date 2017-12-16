@@ -34,7 +34,8 @@ public class WriteReviewActivity extends AppCompatActivity {
         String writeDate = sdf.format(date);
 
         // 작성자 설정(임의로 설정해놓은 것)
-        String author = "chaewoni";
+        Intent i = getIntent(); // LoginActivity의 intent 받아오기
+        String author = i.getStringExtra("user_id");
 
         String sql = "INSERT INTO review (title, contents, author, date) VALUES ('"
                 + title + "', '" + contents + "', '" + author + "', '" + writeDate +"');";
@@ -47,7 +48,10 @@ public class WriteReviewActivity extends AppCompatActivity {
         );
         db.execSQL(sql);
 
-        Intent i = new Intent(this, ReviewListActivity.class);
-        startActivity(i);
+        // 작성한 리뷰를 바로 리스트에 적용
+        ((ReviewListActivity)ReviewListActivity.mContext).loadReviewList();
+
+        db.close();
+        finish();
     }
 }

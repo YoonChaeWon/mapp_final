@@ -16,6 +16,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         loadDB();
+
+
     }
 
     public void onResume(){
@@ -42,6 +44,8 @@ public class LoginActivity extends AppCompatActivity {
             db.close();
         }
 
+        //deleteDatabase("proj.db");
+
     }
 
     public void onClickLoginButton(View v){
@@ -62,11 +66,20 @@ public class LoginActivity extends AppCompatActivity {
         Cursor c = db.rawQuery(sql, null);
         int count = c.getCount();
 
+        if(c != null)
+            c.moveToFirst();
+
         if (count == 0) {
-            Toast.makeText(this, "등록되지 않은 회원입니다.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "로그인에 실패하였습니다.", Toast.LENGTH_SHORT).show();
         } else if (count == 1) {
+            String user_id = c.getString(0);
             Intent i = new Intent(this, WriteReviewActivity.class);
-            startActivity(i);
+            // 사용자의 로그인 id를 다른 액티비티에게 넘겨주기
+            i.putExtra("user_id", user_id);
+
+            Intent next = new Intent(this, ReviewListActivity.class);
+            next.putExtra("user_id", user_id);
+            startActivity(next);
         }
         db.close();
         c.close();
