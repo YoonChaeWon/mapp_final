@@ -32,24 +32,27 @@ public class JoinActivity extends AppCompatActivity {
         );
 
         String sql = "select * from member where id == '" + new_id + "';";
-        Cursor c =db.rawQuery(sql, null);
-        c.moveToFirst();
+            Cursor c = db.rawQuery(sql, null);
+            c.moveToFirst();
 
-        //이미 존재하는 id인 경우
-        if(c.getCount() > 0){
-            Toast.makeText(this, "사용할 수 없는 ID", Toast.LENGTH_SHORT).show();
+            //이미 존재하는 id인 경우
+            if(c.getCount() > 0){
+                Toast.makeText(this, "사용할 수 없는 ID", Toast.LENGTH_SHORT).show();
+            }
+            else {
+                sql = "INSERT INTO member (id, pass, name) VALUES "
+                        + "(" + "'" + new_id + "', '" + new_pass + "', '" + name + "');";
+                //Log.d("sql", sql);
+
+                db.execSQL(sql);
+                Toast.makeText(this, "회원가입 완료", Toast.LENGTH_SHORT).show();
+                finish();
+                c.close();
+                db.close();
         }
-        else {
-            sql = "INSERT INTO member (id, pass, name) VALUES "
-                    + "(" + "'" + new_id + "', '" + new_pass + "', '" + name + "');";
-            //Log.d("sql", sql);
+       // c.close();
 
-            db.execSQL(sql);
-            Toast.makeText(this, "회원가입 완료", Toast.LENGTH_SHORT).show();
-        }
-        c.close();
-
-        db.close();
-        finish();
+        //db.close();
+        //finish();
     }
 }

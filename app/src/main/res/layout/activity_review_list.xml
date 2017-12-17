@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#ffffff"
     tools:context="com.example.cldla.finalproject.ReviewListActivity">
 ]
 <!--    <LinearLayout
@@ -26,21 +27,22 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.3"
             android:text="Search" />
-
     </LinearLayout>-->
 
     <ListView
         android:id="@+id/reviewList"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.8"/>
+        android:layout_weight="0.9"/>
 
-    <Button
-        android:id="@+id/writeReview"
+    <ImageButton
+        android:id="@+id/imageButton"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.1"
-        android:text="후기 작성하러 가기"
+        android:background="#ffffff"
+        app:srcCompat="@drawable/write"
         android:onClick="onClickWriteReview"/>
+
 
 </LinearLayout>
