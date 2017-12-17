@@ -77,9 +77,9 @@ public class ReviewListActivity extends AppCompatActivity {
         String author = i.getStringExtra("user_id");
 
         // 받아온 user_id를 WriteReview에게 전달
-        i = new Intent(this, WriteReviewActivity.class);
-        i.putExtra("user_id", author);
-        startActivity(i);
+        Intent ii = new Intent(this, WriteReviewActivity.class);
+        ii.putExtra("user_id", author);
+        startActivity(ii);
 
     }
 }
